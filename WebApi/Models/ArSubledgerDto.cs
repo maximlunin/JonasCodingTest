@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Models
 {
-    public class ArSubledgerDto : BaseDto
+    public class ArSubledgerDto: BaseDto
     {
         public string ArSubledgerCode { get; set; }
         public string Description { get; set; }
@@ -24,7 +25,15 @@ namespace WebApi.Models
     }
     public class BaseDto
     {
+        [Required]
         public string SiteId { get; set; }
+
+        [Required]
         public string CompanyCode { get; set; }
+    }
+    public class EmployeeBaseDto : BaseDto
+    {
+        [Required]
+        public string EmployeeCode { get; set; }
     }
 }

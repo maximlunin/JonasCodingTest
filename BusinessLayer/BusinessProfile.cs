@@ -14,8 +14,11 @@ namespace BusinessLayer
         private void CreateMapper()
         {
             CreateMap<DataEntity, BaseInfo>();
+            CreateMap<EmployeeDataEntity, EmployeeBaseInfo>();
             CreateMap<Company, CompanyInfo>();
             CreateMap<ArSubledger, ArSubledgerInfo>();
+            CreateMap<Employee, EmployeeInfo>();
+
         }
     }
 

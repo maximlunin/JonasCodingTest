@@ -1,0 +1,44 @@
+2024-09-02 01:13:42.547 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Exception of type 'BusinessLayer.Model.Exceptions.CompanyException' was thrown.
+2024-09-02 20:06:30.296 -04:00 [ERR] Error found for employeeCode:  in Get for EmployeeController.
+Exception:
+Unmapped members were found. Review the types and members below.
+Add a custom mapping expression, ignore, add a custom resolver, or modify the source/destination type
+For no matching constructor, add a no-arg ctor, add optional arguments, or map all of the constructor parameters
+=====================================================================
+AutoMapper created this type map for you, but your types cannot be mapped using the current configuration.
+EmployeeDto -> EmployeeInfo (Destination member list)
+WebApi.Models.EmployeeDto -> BusinessLayer.Model.Models.EmployeeInfo (Destination member list)
+
+Unmapped properties:
+Occupation
+Phone
+LastModified
+
+2024-09-02 21:32:29.415 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Exception of type 'BusinessLayer.Model.Exceptions.CompanyException' was thrown.
+2024-09-02 21:48:39.655 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Exception of type 'BusinessLayer.Model.Exceptions.CompanyException' was thrown.
+2024-09-02 22:15:46.991 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Exception of type 'BusinessLayer.Model.Exceptions.CompanyException' was thrown.
+2024-09-02 22:16:11.801 -04:00 [ERR] Error in InMemoryEmployeeDatabase(Method : Delete) :
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:16:11.844 -04:00 [ERR] InMemoryDatabase: Delete, Exception :Collection was modified; enumeration operation may not execute.
+2024-09-02 22:16:11.844 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:16:11.846 -04:00 [ERR] Error in CompanyController: Delete, Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:18:41.871 -04:00 [ERR] Error in InMemoryEmployeeDatabase(Method : Delete) :
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:19:08.228 -04:00 [ERR] InMemoryDatabase: Delete, Exception :Collection was modified; enumeration operation may not execute.
+2024-09-02 22:20:24.390 -04:00 [ERR] Error in InMemoryEmployeeDatabase(Method : Delete) :
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:20:24.561 -04:00 [ERR] InMemoryDatabase: Delete, Exception :Collection was modified; enumeration operation may not execute.
+2024-09-02 22:20:24.631 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 22:20:37.520 -04:00 [ERR] Error in CompanyController: Delete, Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 23:03:57.411 -04:00 [ERR] Error in InMemoryEmployeeDatabase(Method : Delete) :
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-02 23:05:16.657 -04:00 [ERR] InMemoryDatabase: Delete, Exception :Collection was modified; enumeration operation may not execute.
+2024-09-03 00:00:45.086 -04:00 [ERR] CompanyService: SaveCompanyAsync companyCode: Company1
+Exception: Collection was modified; enumeration operation may not execute.
+2024-09-03 00:00:45.241 -04:00 [ERR] Error in CompanyController: Delete, Exception: Thread was being aborted.

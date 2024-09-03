@@ -1,0 +1,14 @@
+2024-08-30 21:02:33.360 -04:00 [INF] Starting MoveNext
+2024-08-30 21:02:53.716 -04:00 [INF] Company for company code {code} doesn't exist
+2024-08-30 21:03:06.924 -04:00 [INF] Starting MoveNext
+2024-08-30 21:04:42.539 -04:00 [INF] Starting MoveNext
+2024-08-30 21:18:44.926 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:11.445 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:18.143 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:20.331 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:21.679 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:23.308 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:24.322 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:25.341 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:26.691 -04:00 [INF] Starting MoveNext
+2024-08-30 21:19:28.171 -04:00 [INF] Starting MoveNext
