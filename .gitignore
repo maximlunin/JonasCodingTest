@@ -5,3 +5,4 @@
 /packages/
 /WebApi/Web.Debug.*
 /WebApi/Web.Release.config
+/.vs

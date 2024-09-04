@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataAccessLayer.Model.Interfaces;
 using DataAccessLayer.Model.Models;
 
@@ -7,28 +8,30 @@ namespace DataAccessLayer.Repositories
 {
     public class CompanyRepository : ICompanyRepository
     {
-	    private readonly IDbWrapper<Company> _companyDbWrapper;
+        private readonly IDbWrapper<Company> _companyDbWrapper;
 
-	    public CompanyRepository(IDbWrapper<Company> companyDbWrapper)
-	    {
-		    _companyDbWrapper = companyDbWrapper;
-        }
-
-        public IEnumerable<Company> GetAll()
+        public CompanyRepository(IDbWrapper<Company> companyDbWrapper)
         {
-            return _companyDbWrapper.FindAll();
+            _companyDbWrapper = companyDbWrapper;
         }
 
-        public Company GetByCode(string companyCode)
+        public async Task<IEnumerable<Company>> GetAll()
         {
-            return _companyDbWrapper.Find(t => t.CompanyCode.Equals(companyCode))?.FirstOrDefault();
+            return await _companyDbWrapper.FindAllAsync();
         }
 
-        public bool SaveCompany(Company company)
+        public async Task<Company> GetByCode(string companyCode)
+        {
+            var company = await _companyDbWrapper.FindAsync(t => t.CompanyCode.Equals(companyCode));
+            
+            return company.FirstOrDefault();
+        }
+
+        public async Task<bool> SaveCompany(Company company)
         {
             var itemRepo = _companyDbWrapper.Find(t =>
                 t.SiteId.Equals(company.SiteId) && t.CompanyCode.Equals(company.CompanyCode))?.FirstOrDefault();
-            if (itemRepo !=null)
+            if (itemRepo != null)
             {
                 itemRepo.CompanyName = company.CompanyName;
                 itemRepo.AddressLine1 = company.AddressLine1;
@@ -40,10 +43,16 @@ namespace DataAccessLayer.Repositories
                 itemRepo.PhoneNumber = company.PhoneNumber;
                 itemRepo.PostalZipCode = company.PostalZipCode;
                 itemRepo.LastModified = company.LastModified;
-                return _companyDbWrapper.Update(itemRepo);
+                return await _companyDbWrapper.UpdateAsync(itemRepo);
             }
 
-            return _companyDbWrapper.Insert(company);
+            return await _companyDbWrapper.InsertAsync(company);
         }
+
+        public async Task<bool> DeleteCompany(string companyCode)
+        {
+            return await _companyDbWrapper.DeleteAsync(c => c.CompanyCode == companyCode);
+        }
+
     }
 }
