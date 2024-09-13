@@ -17,6 +17,7 @@ namespace WebApi.Controllers
             _companyService = companyService;
             _mapper = mapper;
         }
+        
         // GET api/<controller>
         public IEnumerable<CompanyDto> GetAll()
         {
