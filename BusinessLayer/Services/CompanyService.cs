@@ -16,16 +16,43 @@ namespace BusinessLayer.Services
             _companyRepository = companyRepository;
             _mapper = mapper;
         }
-        public IEnumerable<CompanyInfo> GetAllCompanies()
+        
+        public async Task<IEnumerable<CompanyInfo>> GetAllCompanies()
         {
-            var res = _companyRepository.GetAll();
+            var res = await _companyRepository.GetAll();
             return _mapper.Map<IEnumerable<CompanyInfo>>(res);
         }
 
-        public CompanyInfo GetCompanyByCode(string companyCode)
+        public asynd Task<CompanyInfo> GetCompanyByCode(string companyCode)
         {
-            var result = _companyRepository.GetByCode(companyCode);
+            var result = await _companyRepository.GetByCode(companyCode);
             return _mapper.Map<CompanyInfo>(result);
+        }
+
+        public async Task<bool> AddCompany(CompanyInfo addCompany)
+        {
+            _companyRepository.SaveCompany(addCompany);
+            await _companyRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdateCompany(CompanyInfo addCompany)
+        {
+            _companyRepository.SaveCompany(addCompany);
+            await _companyRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteCompany(int id) 
+        {
+            var company = await _companyRepository.Company.FindAsync(id);
+            if(company != null)
+            {
+                _companyRepository.company.Remove(company);
+                 await _context.SaveChangesAsync();         
+            }
+            else
+            {
+                 throw new Exception($"No company found with the id {id}");
+            }
         }
     }
 }
