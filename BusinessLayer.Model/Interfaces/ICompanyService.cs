@@ -5,7 +5,10 @@ namespace BusinessLayer.Model.Interfaces
 {
     public interface ICompanyService
     {
-        IEnumerable<CompanyInfo> GetAllCompanies();
-        CompanyInfo GetCompanyByCode(string companyCode);
+        Task<IEnumerable<CompanyInfo>> GetAllCompanies();
+        Task<CompanyInfo?> GetCompanyByCode(string companyCode);
+        Task AddCompany(CompanyInfo addCompany);
+        Task UpdateCompany(CompanyInfo updateCompany);
+        Task DeleteCompany(int id);
     }
 }
