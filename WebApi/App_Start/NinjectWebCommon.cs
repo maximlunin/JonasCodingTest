@@ -3,6 +3,7 @@ using BusinessLayer;
 using DataAccessLayer.Database;
 using DataAccessLayer.Model.Interfaces;
 using DataAccessLayer.Repositories;
+using Microsoft.Extensions.Logging;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebApi.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebApi.App_Start.NinjectWebCommon), "Stop")]
@@ -14,6 +15,7 @@ namespace WebApi.App_Start
     using System.Web.Http;
     using BusinessLayer.Model.Interfaces;
     using BusinessLayer.Services;
+    using Microsoft.Extensions.Logging;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -72,6 +74,22 @@ namespace WebApi.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.AddDebug();
+                builder.SetMinimumLevel(LogLevel.Debug);
+            });
+
+            kernel.Bind<ILoggerFactory>().ToConstant(loggerFactory);
+
+            kernel.Bind(typeof(ILogger<>)).ToMethod(context =>
+            {
+                var factory = context.Kernel.Get<ILoggerFactory>();
+                var genericType = context.Request.Service.GetGenericArguments()[0];
+                var loggerType = typeof(Logger<>).MakeGenericType(genericType);
+                return Activator.CreateInstance(loggerType, factory);
+            });
             kernel.Bind<IMapper>().ToMethod(context =>
             {
                 var config = new MapperConfiguration(cfg =>
@@ -84,7 +102,9 @@ namespace WebApi.App_Start
             }).InSingletonScope();
             kernel.Bind<ICompanyService>().To<CompanyService>();
             kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
-            kernel.Bind(typeof(IDbWrapper<>)).To(typeof(InMemoryDatabase<>));
+            kernel.Bind<IEmployeeService>().To<EmployeeService>();
+            kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
+            kernel.Bind(typeof(IDbWrapper<>)).To(typeof(InMemoryDatabase<>)).InSingletonScope();
         }
     }
 }
